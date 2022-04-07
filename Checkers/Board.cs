@@ -21,5 +21,11 @@ namespace Checkers
         {
             Pieces.Add(piece);
         }
+        /*public bool ExistsPieceInPosition(Position position)
+        {
+            if (Pieces.Exists(x => x.GetXY()[0] == position.GetPos()[0] && x.GetXY()[1] == position.GetPos()[1]))
+                return true;
+            return false;
+        }*/
     }
 }

@@ -16,8 +16,6 @@ namespace Checkers
             PieceColor = color;
         }
 
-
-
         public int[] GetXY()
         {
             return PiecePosition.GetPos();
