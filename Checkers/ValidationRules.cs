@@ -13,7 +13,7 @@ namespace Checkers
         }
         public void MovePiece(int deltaX, int deltaY, Piece piece)
         {
-            if (!IsValidMove(deltaX,deltaY,piece))
+            if (!IsValidMove(deltaX,deltaY,piece) || ExistsPieceInPosition(new Position(piece.PiecePosition.GetPos()[0] + deltaX, piece.PiecePosition.GetPos()[1] + deltaY)))
                 throw new ArgumentException("Can't make that move");
             else
                 piece.PiecePosition.SetMove(deltaX, deltaY);
