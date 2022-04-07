@@ -12,11 +12,13 @@ namespace Checkers
             var size = 10;
             int numberOfPieces = (size / 2 - 1) * (size / 2);
             var pieces = new List<Piece>();
+            Board CheckerBoard = new Board(size, size);
             int x = 0, y = 0;
+ 
             for (int i = 0; i < numberOfPieces; i++)
             {
-                pieces.Add(new Checker(new Position(x, y), ConsoleColor.DarkBlue));
-                pieces.Add(new Checker(new Position(size - x - 1, size - y - 1), ConsoleColor.DarkRed));
+                CheckerBoard.AddPiece(new Checker(new Position(x, y), ConsoleColor.DarkBlue));
+                CheckerBoard.AddPiece(new Checker(new Position(size - x - 1, size - y - 1), ConsoleColor.DarkRed));
                 x += 2;
                 if(x >= size)
                 {
@@ -24,7 +26,8 @@ namespace Checkers
                     x = 0 + y % 2;
                 }
             }
-            Graphics.DrawBoard(size, pieces);
+            
+            Graphics.DrawBoard(CheckerBoard);
         }
     }
 }
