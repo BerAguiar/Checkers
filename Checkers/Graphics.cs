@@ -13,23 +13,23 @@ namespace Checkers
 
 
 
-        public static void DrawBoard(int size, List<Piece> board)
+        public static void DrawBoard(Board board)
         {
             Console.Clear();
-            foreach(Piece piece in board)
+            foreach(Piece piece in board.Pieces)
                 Console.WriteLine(piece.GetXY()[0] + "," + piece.GetXY()[1]);
             Console.OutputEncoding = System.Text.Encoding.Unicode;
-            Console.WriteLine("  ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, size + 2));
-            for (int i = 0; i < size; i++)
+            Console.WriteLine("  ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, board.HorizontalLenght + 2));
+            for (int i = 0; i < board.VerticalLenght; i++)
             {
                 Console.Write((i+1).ToString("D2"));
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < board.HorizontalLenght; j++)
                 {
                     if ((i + j) % 2 == 0)
                         Console.BackgroundColor = ConsoleColor.Gray;
                     else
                         Console.BackgroundColor = ConsoleColor.DarkGray;
-                    var hasPiece = board.FirstOrDefault(p => p.GetXY()[1] == i && p.GetXY()[0] == j);
+                    var hasPiece = board.Pieces.FirstOrDefault(p => p.GetXY()[1] == i && p.GetXY()[0] == j);
                     if (hasPiece != null)
                     {
                         Console.ForegroundColor = hasPiece.PieceColor;
