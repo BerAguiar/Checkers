@@ -13,38 +13,41 @@ namespace Checkers
             Board = board;
             MyColor = myColor;
         }
-        public bool MovePiece(int deltaX, int deltaY, Piece piece)
+        public bool MovePiece(Position newPosition, Piece piece)
         {
-            if (!IsValidRegularMove(deltaX,deltaY,piece) && !IsValidCaptureMove(deltaX, deltaY, piece))
+            if (!IsValidRegularMove(newPosition,piece))
             {
+                if (IsValidCaptureMove(newPosition, piece))
+                {
+                    piece.PiecePosition.SetMove(newPosition.PosX, newPosition.PosY);
+                    return true;
+                }
                 return false;
-            }
-            else
-            {
-                piece.PiecePosition.SetMove(deltaX, deltaY);
-                return true;
-            }   
+            }       
+            piece.PiecePosition.SetMove(newPosition.PosX, newPosition.PosY);
+            return true;
         }
         private bool ExistsPieceInPosition(Position position)
         {
-            if (Board.Pieces.Exists(x => x.GetXY()[0] == position.GetPos()[0] && x.GetXY()[1] == position.GetPos()[1]))
+            if (Board.Pieces.Exists(x => x.PiecePosition.PosX == position.PosX && x.PiecePosition.PosY == position.PosY))
                 return true;
             return false;
         }
-        private bool IsValidRegularMove(int deltaX, int deltaY, Piece piece)
+        private bool IsValidRegularMove(Position newPosition, Piece piece)
         {
-            if (Math.Abs(deltaX) != 1 || deltaY <= -1 || deltaY > 1)
+            if (Math.Abs(piece.PiecePosition.PosX - newPosition.PosX) != 1 || piece.PiecePosition.PosY <= -1 || newPosition.PosY > 1)
                 return false;
-            if (ExistsPieceInPosition(new Position(piece.PiecePosition.GetPos()[0]+deltaX, piece.PiecePosition.GetPos()[1] + deltaY)))
+            if (ExistsPieceInPosition(newPosition))
                 return false;
             return true;
         }
-        private bool IsValidCaptureMove(int deltaX, int deltaY, Piece piece)
+        private bool IsValidCaptureMove(Position newPosition, Piece piece)
         {
- 
-            if (Math.Abs(deltaX) > 2 || Math.Abs(deltaY) > 2)
+            if(ExistsPieceInPosition(new Position(piece.PiecePosition.PosX+1, piece.PiecePosition.PosY + 1)))
+
+            if (Math.Abs(piece.PiecePosition.PosX - newPosition.PosX) > 2 || Math.Abs(piece.PiecePosition.PosY - newPosition.PosY) > 2)
                 return false;
-            if (ExistsPieceInPosition(new Position(piece.PiecePosition.GetPos()[0] + deltaX, piece.PiecePosition.GetPos()[1] + deltaY)))
+            if (ExistsPieceInPosition(newPosition))
                 return false;
 
             return true;

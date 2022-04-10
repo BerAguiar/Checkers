@@ -13,7 +13,7 @@ namespace Checkers
             int numberOfPieces = 10; //(size / 2 - 1) * (size / 2);
             var pieces = new List<Piece>();
             Board CheckerBoard = new Board(size, size);
-            ValidationRules vr = new ValidationRules(CheckerBoard);
+            ValidationRules vr = new ValidationRules(CheckerBoard, ConsoleColor.DarkBlue);
 
             int x = 0, y = 0;
  
@@ -35,7 +35,7 @@ namespace Checkers
 
             Console.Read();
 
-            vr.MovePiece(2,2, CheckerBoard.Pieces.Find(x => x.PiecePosition.GetPos()[0]==4 && x.PiecePosition.GetPos()[1] == 4));
+            vr.MovePiece(new Position(6,6), CheckerBoard.Pieces.Find(x => x.PiecePosition.GetPos()[0]==4 && x.PiecePosition.GetPos()[1] == 4));
 
             Graphics.DrawBoard(CheckerBoard);
 
