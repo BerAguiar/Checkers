@@ -31,22 +31,28 @@ namespace Checkers
         {
             if (Board.Pieces.Exists(x => x.PiecePosition.PosX == position.PosX && x.PiecePosition.PosY == position.PosY))
                 return true;
+
             return false;
         }
         private bool IsValidRegularMove(Position newPosition, Piece piece)
         {
             if (Math.Abs(piece.PiecePosition.PosX - newPosition.PosX) != 1 || piece.PiecePosition.PosY <= -1 || newPosition.PosY > 1)
                 return false;
+
             if (ExistsPieceInPosition(newPosition))
                 return false;
+
             return true;
         }
         private bool IsValidCaptureMove(Position newPosition, Piece piece)
         {
-            if(ExistsPieceInPosition(new Position(piece.PiecePosition.PosX+1, piece.PiecePosition.PosY + 1)))
+            if (!Board.Pieces.Exists(x => Math.Abs(piece.PiecePosition.PosX - x.PiecePosition.PosX) == 1 
+                    && Math.Abs(piece.PiecePosition.PosY - x.PiecePosition.PosY) == 1 && x.PieceColor != MyColor)) 
+                    return false;
 
             if (Math.Abs(piece.PiecePosition.PosX - newPosition.PosX) > 2 || Math.Abs(piece.PiecePosition.PosY - newPosition.PosY) > 2)
                 return false;
+
             if (ExistsPieceInPosition(newPosition))
                 return false;
 

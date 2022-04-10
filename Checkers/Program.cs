@@ -8,7 +8,7 @@ namespace Checkers
     {
         static void Main(string[] args)
         {
-            //Graphics.SplashScreen();
+            Graphics.SplashScreen();
             var size = 10;
             int numberOfPieces = 10; //(size / 2 - 1) * (size / 2);
             var pieces = new List<Piece>();
@@ -28,14 +28,16 @@ namespace Checkers
                     x = 0 + y % 2;
                 }
             }
-            CheckerBoard.AddPiece(new Queen(new Position(4, 4), ConsoleColor.DarkBlue));
-            CheckerBoard.AddPiece(new Queen(new Position(5, 5), ConsoleColor.Red));
+            CheckerBoard.AddPiece(new Queen(new Position(2, 6), ConsoleColor.DarkBlue));
+            CheckerBoard.AddPiece(new Queen(new Position(3, 5), ConsoleColor.Red));
+            CheckerBoard.AddPiece(new Queen(new Position(6, 6), ConsoleColor.Red));
+            CheckerBoard.AddPiece(new Queen(new Position(4, 4), ConsoleColor.Red));
 
             Graphics.DrawBoard(CheckerBoard);
 
             Console.Read();
 
-            vr.MovePiece(new Position(6,6), CheckerBoard.Pieces.Find(x => x.PiecePosition.GetPos()[0]==4 && x.PiecePosition.GetPos()[1] == 4));
+            vr.MovePiece(new Position(3,7), CheckerBoard.Pieces.Find(x => x.PiecePosition.GetPos()[0]==2 && x.PiecePosition.GetPos()[1] == 6));
 
             Graphics.DrawBoard(CheckerBoard);
 
