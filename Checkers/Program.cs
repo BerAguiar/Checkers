@@ -29,7 +29,7 @@ namespace Checkers
                 }
             }
             CheckerBoard.AddPiece(new Queen(new Position(2, 6), ConsoleColor.DarkBlue, CheckerBoard));
-            CheckerBoard.AddPiece(new Queen(new Position(3, 5), ConsoleColor.Red, CheckerBoard));
+            //CheckerBoard.AddPiece(new Queen(new Position(3, 5), ConsoleColor.Red, CheckerBoard));
             CheckerBoard.AddPiece(new Queen(new Position(6, 6), ConsoleColor.Red, CheckerBoard));
             CheckerBoard.AddPiece(new Queen(new Position(4, 4), ConsoleColor.Red, CheckerBoard));
 
@@ -37,7 +37,7 @@ namespace Checkers
 
             Console.Read();
 
-            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 6 && x.PiecePosition.PosY == 6).MovePiece(new Position(9, 3));
+            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 4 && x.PiecePosition.PosY == 4).MovePiece(new Position(2, 6));
 
             
             //vr.MovePiece(new Position(3,7), CheckerBoard.Pieces.Find(x => x.PiecePosition.GetPos()[0]==2 && x.PiecePosition.GetPos()[1] == 6));
