@@ -4,21 +4,22 @@ using System.Text;
 
 namespace Checkers
 {
-    class ValidationRules
+    class QueenValidationRules
     {
         public Board Board { get; set; }
         public ConsoleColor MyColor { get; set; }
-        public ValidationRules (Board board, ConsoleColor myColor)
+        public QueenValidationRules(Board board, ConsoleColor myColor)
         {
             Board = board;
             MyColor = myColor;
         }
+
         public bool CanMoveCheckerToPosition(Position newPosition, Piece piece)
         {
             if (!IsValidPosition(newPosition))
                 return false;
-            
-            if (!IsValidRegularMove(newPosition,piece))
+
+            if (!IsValidRegularMove(newPosition, piece))
             {
                 if (IsValidCaptureMove(newPosition, piece))
                 {
@@ -26,7 +27,7 @@ namespace Checkers
                     return true;
                 }
                 return false;
-            }       
+            }
             //piece.PiecePosition.SetMove(newPosition.PosX, newPosition.PosY);
             return true;
         }
@@ -37,9 +38,10 @@ namespace Checkers
 
             return false;
         }
+        //adapted for queen
         private bool IsValidRegularMove(Position newPosition, Piece piece)
         {
-            if (Math.Abs(piece.PiecePosition.PosX - newPosition.PosX) != 1 || piece.PiecePosition.PosY <= -1 || newPosition.PosY > 1)
+            if (Math.Abs(piece.PiecePosition.PosX - newPosition.PosX) != Math.Abs(piece.PiecePosition.PosY - newPosition.PosY))
                 return false;
 
             if (ExistsPieceInPosition(newPosition))
@@ -49,9 +51,9 @@ namespace Checkers
         }
         private bool IsValidCaptureMove(Position newPosition, Piece piece)
         {
-            if (!Board.Pieces.Exists(x => Math.Abs(piece.PiecePosition.PosX - x.PiecePosition.PosX) == 1 
-                    && Math.Abs(piece.PiecePosition.PosY - x.PiecePosition.PosY) == 1 && x.PieceColor != MyColor)) 
-                    return false;
+            if (!Board.Pieces.Exists(x => Math.Abs(piece.PiecePosition.PosX - x.PiecePosition.PosX) == 1
+                    && Math.Abs(piece.PiecePosition.PosY - x.PiecePosition.PosY) == 1 && x.PieceColor != MyColor))
+                return false;
 
             if (Math.Abs(piece.PiecePosition.PosX - newPosition.PosX) > 2 || Math.Abs(piece.PiecePosition.PosY - newPosition.PosY) > 2)
                 return false;
@@ -64,10 +66,9 @@ namespace Checkers
 
         private bool IsValidPosition(Position position)
         {
-            if (position.PosX > Board.HorizontalLenght && position.PosX >= 0 || position.PosY > Board.VerticalLenght && position.PosY >= 0)
+            if (position.PosX > Board.HorizontalLenght || position.PosY > Board.VerticalLenght)
                 return false;
             return true;
         }
-
     }
 }
