@@ -6,8 +6,8 @@ namespace Checkers
 {
     class Position
     {
-        private int PosX { get; set; }
-        private int PosY { get; set; }
+        public int PosX { get; private set; }
+        public int PosY { get; private set; }
         public Position(int posX, int posY)
         {
             PosX = posX;
@@ -20,10 +20,10 @@ namespace Checkers
             PosY = posY;
         }
 
-        public void SetMove(int deltaX, int deltaY)
+        public void SetMove(int posX, int posY)
         {
-            PosX += deltaX;
-            PosY += deltaY;
+            PosX = posX;
+            PosY = posY;
         }
 
         public int[] GetPos()
