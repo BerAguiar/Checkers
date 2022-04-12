@@ -4,11 +4,12 @@ namespace Checkers
 {
     abstract class Piece
     {
-        public Position PiecePosition;
-        public ConsoleColor PieceColor;
-        public string PieceImage;
+        public Position PiecePosition { get; }
+        public ConsoleColor PieceColor { get; }
+        
+        public string PieceImage { get; }
 
-        public Board Board;
+        public Board Board { get; }
         public Piece(Position piecePosition, ConsoleColor pieceColor, Board board, string pieceImage)
         {
             PiecePosition = piecePosition;
