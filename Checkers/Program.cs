@@ -7,7 +7,7 @@ namespace Checkers
     {
         static void Main(string[] args)
         {
-            Graphics.SplashScreen();
+            //Graphics.SplashScreen();
             
             CheckersEngine engine = new CheckersEngine(10);
             engine.GamePlay();

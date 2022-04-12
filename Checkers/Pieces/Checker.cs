@@ -55,9 +55,11 @@ namespace Checkers.Pieces
         }
         private bool IsValidRegularMove(Position newPosition)
         {
-            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 || Math.Abs(PiecePosition.PosY - newPosition.PosY) != 1 
-                            && newPosition.PosY > PiecePosition.PosY)
+            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 && Math.Abs(PiecePosition.PosY - newPosition.PosY) != 1)
                 return false;
+
+            if ((!(newPosition.PosY > PiecePosition.PosY) && PieceColor == ConsoleColor.DarkBlue) || (PieceColor == ConsoleColor.DarkRed && (newPosition.PosY > PiecePosition.PosY)))
+                    return false;
 
             if (ExistsPieceInPosition(newPosition))
                 return false;
@@ -70,7 +72,10 @@ namespace Checkers.Pieces
                     && Math.Abs(PiecePosition.PosY - x.PiecePosition.PosY) == 1 && x.PieceColor != PieceColor))
                 return false;
 
-            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) > 2 || Math.Abs(PiecePosition.PosY - newPosition.PosY) > 2)
+            if (!Board.Pieces.Exists(x => (((newPosition.PosX - PiecePosition.PosX) / 2) + PiecePosition.PosX == x.PiecePosition.PosX) && ((((newPosition.PosY-PiecePosition.PosY)/2)) + PiecePosition.PosY == x.PiecePosition.PosY) && x.PieceColor != PieceColor))
+                return false;
+
+            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) > 2 && Math.Abs(PiecePosition.PosY - newPosition.PosY) > 2)
                 return false;
 
             if (ExistsPieceInPosition(newPosition))
