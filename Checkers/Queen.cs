@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Checkers
 {
@@ -71,7 +69,6 @@ namespace Checkers
 
             return true;
         }
-
         private bool IsValidPosition(Position position)
         {
             if (position.PosX > Board.HorizontalLenght || position.PosY > Board.VerticalLenght)

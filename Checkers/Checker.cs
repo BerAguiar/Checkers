@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Checkers
 {
     class Checker : Piece
     {
+        public bool IsCaptureMove { get; private set; }
         public Checker(Position position, ConsoleColor color, Board board) : base(position, color, board, "\u25cf")
         {
 
@@ -32,10 +31,12 @@ namespace Checkers
             {
                 if (IsValidCaptureMove(newPosition))
                 {
+                    IsCaptureMove = true;
                     return true;
                 }
                 return false;
             }
+            IsCaptureMove = false;
             return true;
         }
         private bool ExistsPieceInPosition(Position position)
@@ -47,7 +48,8 @@ namespace Checkers
         }
         private bool IsValidRegularMove(Position newPosition)
         {
-            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 || Math.Abs(PiecePosition.PosY - newPosition.PosY) != 1 && newPosition.PosY > PiecePosition.PosY)
+            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 || Math.Abs(PiecePosition.PosY - newPosition.PosY) != 1 
+                            && newPosition.PosY > PiecePosition.PosY)
                 return false;
 
             if (ExistsPieceInPosition(newPosition))

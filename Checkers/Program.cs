@@ -27,26 +27,28 @@ namespace Checkers
                 }
             }
             CheckerBoard.AddPiece(new Queen(new Position(2, 6), ConsoleColor.DarkBlue, CheckerBoard));
-            //CheckerBoard.AddPiece(new Queen(new Position(3, 5), ConsoleColor.Red, CheckerBoard));
-            CheckerBoard.AddPiece(new Queen(new Position(6, 6), ConsoleColor.Red, CheckerBoard));
-            CheckerBoard.AddPiece(new Queen(new Position(4, 4), ConsoleColor.Red, CheckerBoard));
+            CheckerBoard.AddPiece(new Queen(new Position(6, 6), ConsoleColor.DarkRed, CheckerBoard));
+            CheckerBoard.AddPiece(new Queen(new Position(4, 4), ConsoleColor.DarkRed, CheckerBoard));
+
+            Graphics.DrawBoard(CheckerBoard);
+
+            Console.WriteLine("Select piece to move: ");
+            var stringVar = Console.ReadLine();
+            var position = Input.ReadInputs(stringVar);
+
+            Console.WriteLine("Select where to move piece: ");
+            var stringVar2 = Console.ReadLine();
+            var position2 = Input.ReadInputs(stringVar2);
+
+            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == position[0] && x.PiecePosition.PosY == position[1]).MovePiece(new Position(position2[0], position2[1]));
 
             Graphics.DrawBoard(CheckerBoard);
 
             Console.Read();
 
-            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 4 && x.PiecePosition.PosY == 4).MovePiece(new Position(5, 3));
-
             Graphics.DrawBoard(CheckerBoard);
 
-            Console.Read();
-
-            Piece test = CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 3 && x.PiecePosition.PosY == 1);
-
-            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 3 && x.PiecePosition.PosY == 1).MovePiece(new Position(4, 2));
-
-            int[] test2 = test.GetXY();
-
+            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 3 && x.PiecePosition.PosY == 1).MovePiece(new Position(2, 2));
 
             Graphics.DrawBoard(CheckerBoard);
 
