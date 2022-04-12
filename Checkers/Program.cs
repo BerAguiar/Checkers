@@ -13,7 +13,6 @@ namespace Checkers
             int numberOfPieces = 10; //(size / 2 - 1) * (size / 2);
             var pieces = new List<Piece>();
             Board CheckerBoard = new Board(size, size);
-            ValidationRules vr = new ValidationRules(CheckerBoard, ConsoleColor.DarkBlue);
 
             int x = 0, y = 0;
  
@@ -37,13 +36,25 @@ namespace Checkers
 
             Console.Read();
 
-            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 4 && x.PiecePosition.PosY == 4).MovePiece(new Position(2, 6));
-
-            
-            //vr.MovePiece(new Position(3,7), CheckerBoard.Pieces.Find(x => x.PiecePosition.GetPos()[0]==2 && x.PiecePosition.GetPos()[1] == 6));
+            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 4 && x.PiecePosition.PosY == 4).MovePiece(new Position(5, 3));
 
             Graphics.DrawBoard(CheckerBoard);
 
+            Console.Read();
+
+            Piece test = CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 3 && x.PiecePosition.PosY == 1);
+
+            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 3 && x.PiecePosition.PosY == 1).MovePiece(new Position(4, 2));
+
+            int[] test2 = test.GetXY();
+
+
+            Graphics.DrawBoard(CheckerBoard);
+
+            Console.Read();
+
+            CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 5 && x.PiecePosition.PosY == 3).MovePiece(new Position(3, 1));
+            Graphics.DrawBoard(CheckerBoard);
             Console.Read();
 
         }

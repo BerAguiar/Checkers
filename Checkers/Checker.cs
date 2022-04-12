@@ -47,7 +47,7 @@ namespace Checkers
         }
         private bool IsValidRegularMove(Position newPosition)
         {
-            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 || PiecePosition.PosY <= -1 || newPosition.PosY > 1)
+            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 || Math.Abs(PiecePosition.PosY - newPosition.PosY) != 1 && newPosition.PosY > PiecePosition.PosY)
                 return false;
 
             if (ExistsPieceInPosition(newPosition))
@@ -72,7 +72,7 @@ namespace Checkers
 
         private bool IsValidPosition(Position position)
         {
-            if (position.PosX > Board.HorizontalLenght && position.PosX >= 0 || position.PosY > Board.VerticalLenght && position.PosY >= 0)
+            if (position.PosX > Board.HorizontalLenght && position.PosX <= 0 || position.PosY > Board.VerticalLenght && position.PosY <= 0)
                 return false;
             return true;
         }

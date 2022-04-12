@@ -14,12 +14,6 @@ namespace Checkers
             PosY = posY;
         }
 
-        public void SetPosition(int posX, int posY)
-        {
-            PosX = posX;
-            PosY = posY;
-        }
-
         public void SetMove(int posX, int posY)
         {
             PosX = posX;
