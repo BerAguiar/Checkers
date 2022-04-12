@@ -6,6 +6,7 @@ namespace Checkers
 {
     class Checker : Piece
     {
+        public bool IsCaptureMove { get; private set; }
         public Checker(Position position, ConsoleColor color, Board board) : base(position, color, board, "\u25cf")
         {
 
@@ -32,10 +33,12 @@ namespace Checkers
             {
                 if (IsValidCaptureMove(newPosition))
                 {
+                    IsCaptureMove = true;
                     return true;
                 }
                 return false;
             }
+            IsCaptureMove = false;
             return true;
         }
         private bool ExistsPieceInPosition(Position position)
