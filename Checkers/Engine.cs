@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Checkers
 {
@@ -12,15 +10,7 @@ namespace Checkers
 
         public Engine(int size)
         {
-            board = new Board(size, size);
-            turn = ConsoleColor.DarkBlue;
-        }
-
-
-
-        public Engine(Board _board)
-        {
-            board = _board;
+            board = GenerateCheckerBoard(size);
             turn = ConsoleColor.DarkBlue;
         }
 
@@ -105,6 +95,7 @@ namespace Checkers
 
         public ConsoleColor GamePlay()
         {
+            Graphics.DrawBoard(board);
             while(board.Pieces.Find(x => x.PieceColor == ConsoleColor.DarkRed) != null
                 && board.Pieces.Find(x => x.PieceColor == ConsoleColor.DarkBlue) != null)
             {
@@ -114,6 +105,29 @@ namespace Checkers
                 return ConsoleColor.DarkBlue;
             else
                 return ConsoleColor.DarkRed;
+        }
+
+
+
+        private Board GenerateCheckerBoard(int size)
+        {
+            int numberOfPieces = (size / 2 - 1) * (size / 2);
+            Board CheckerBoard = new Board(size, size);
+
+            int x = 0, y = 0;
+
+            for (int i = 0; i < numberOfPieces; i++)
+            {
+                CheckerBoard.AddPiece(new Checker(new Position(x, y), ConsoleColor.DarkBlue, CheckerBoard));
+                CheckerBoard.AddPiece(new Checker(new Position(size - x - 1, size - y - 1), ConsoleColor.DarkRed, CheckerBoard));
+                x += 2;
+                if (x >= size)
+                {
+                    y++;
+                    x = 0 + y % 2;
+                }
+            }
+            return CheckerBoard;
         }
     }
 }
