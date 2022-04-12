@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Checkers.GameEngines;
+using Checkers.UserInterface;
 
 namespace Checkers
 {
@@ -9,7 +9,7 @@ namespace Checkers
         {
             Graphics.SplashScreen();
             
-            Engine engine = new Engine(10);
+            CheckersEngine engine = new CheckersEngine(10);
             engine.GamePlay();
 
         }

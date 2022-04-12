@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Checkers.GameEnvironment;
+using System;
 
-namespace Checkers
+namespace Checkers.Pieces
 {
     class Checker : Piece
     {
         public bool IsCaptureMove { get; private set; }
-        public Checker(Position position, ConsoleColor color, Board board) : base(position, color, board, "\u25cf")
+        public Checker(Position position, ConsoleColor color, Board board) : base(position, color, board, "•")
         {
 
         }

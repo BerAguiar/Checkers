@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Checkers.Pieces;
+using System.Collections.Generic;
 
-namespace Checkers
+namespace Checkers.GameEnvironment
 {
     class Board
     {

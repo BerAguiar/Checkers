@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Checkers.GameEnvironment;
+using Checkers.Pieces;
+using Checkers.UserInterface;
+using System;
 
-namespace Checkers
+namespace Checkers.GameEngines
 {
-    class Engine
+    class CheckersEngine
     {
         private Board board;
         private ConsoleColor turn;
 
-        public Engine(int size)
+        public CheckersEngine(int size)
         {
             board = GenerateCheckerBoard(size);
             turn = ConsoleColor.DarkBlue;
@@ -50,7 +52,6 @@ namespace Checkers
                 }
             }
             Console.ResetColor();
-
             Graphics.DrawBoard(board);
         }
 
@@ -63,7 +64,7 @@ namespace Checkers
             {
                 Move();
                 Console.ForegroundColor = turn;
-                Console.Write("Are there subsequent moves?");
+                Console.Write("\nAre there subsequent moves?");
                 Console.ResetColor();
                 string input = Console.ReadLine();
                 switch (input.ToLower())
@@ -79,6 +80,7 @@ namespace Checkers
                 }
             } while (endedMove == 1);
             EndTurn();
+            Graphics.DrawBoard(board);
         }
 
 

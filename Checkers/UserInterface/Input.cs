@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Checkers
+namespace Checkers.UserInterface
 {
     public static class Input
     {
@@ -24,13 +22,11 @@ namespace Checkers
             {
                 x = (int)position.ToUpper()[0] - 65;
                 y = int.Parse(position.Substring(1)) - 1;
-                Console.WriteLine(x + "," + y);
             }
             else
             {
                 x = (int)position.ToUpper()[position.Length - 1] - 65;
                 y = int.Parse(position.Substring(0, position.Length - 1)) - 1;
-                Console.WriteLine(x + "," + y);
             }
 
             return new int[2] { x, y };

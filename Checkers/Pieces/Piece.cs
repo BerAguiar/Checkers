@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Checkers.GameEnvironment;
+using System;
 
-namespace Checkers
+namespace Checkers.Pieces
 {
     abstract class Piece
     {

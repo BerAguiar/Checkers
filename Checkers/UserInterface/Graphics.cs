@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Checkers.GameEnvironment;
+using System;
 using System.Linq;
 using System.Threading;
 
-namespace Checkers
+namespace Checkers.UserInterface
 {
     class Graphics
     {

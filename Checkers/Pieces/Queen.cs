@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Checkers.GameEnvironment;
+using System;
 
-namespace Checkers
+namespace Checkers.Pieces
 {
     class Queen : Piece
     {
-        public Queen(Position position, ConsoleColor color, Board board) : base(position, color, board, "\u2660")
+        public Queen(Position position, ConsoleColor color, Board board) : base(position, color, board, "♠")
         {
 
         }
