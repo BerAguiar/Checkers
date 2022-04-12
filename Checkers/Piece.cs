@@ -19,6 +19,6 @@ namespace Checkers
         }
         public abstract int[] GetXY();
 
-        public abstract void MovePiece(Position position);
+        public abstract bool MovePiece(Position position);
     }
 }

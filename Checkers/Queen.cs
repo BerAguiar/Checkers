@@ -14,12 +14,16 @@ namespace Checkers
             return PiecePosition.GetPos();
         }
 
-        public override void MovePiece(Position newPosition)
+        public override bool MovePiece(Position newPosition)
         {
             if (CanMoveCheckerToPosition(newPosition))
+            {
                 PiecePosition.SetMove(newPosition.PosX, newPosition.PosY);
+                return true;
+            }
             else
                 Console.WriteLine("Invalid move!");
+            return false;
         }
 
         public bool CanMoveCheckerToPosition(Position newPosition)

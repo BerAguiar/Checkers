@@ -24,5 +24,10 @@ namespace Checkers
         {
             return Pieces.Find(p => p.PiecePosition.GetPos()[0] == x && p.PiecePosition.GetPos()[1] == y);
         }
+
+        public void RemovePiece(Piece piece)
+        {
+            Pieces.Remove(piece);
+        }
     }
 }

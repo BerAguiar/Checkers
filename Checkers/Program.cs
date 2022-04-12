@@ -26,19 +26,24 @@ namespace Checkers
                     x = 0 + y % 2;
                 }
             }
+            CheckerBoard.AddPiece(new Checker(new Position(2, 2), ConsoleColor.DarkRed, CheckerBoard));
             CheckerBoard.AddPiece(new Queen(new Position(2, 6), ConsoleColor.DarkBlue, CheckerBoard));
             CheckerBoard.AddPiece(new Queen(new Position(6, 6), ConsoleColor.DarkRed, CheckerBoard));
             CheckerBoard.AddPiece(new Queen(new Position(4, 4), ConsoleColor.DarkRed, CheckerBoard));
 
-            Graphics.DrawBoard(CheckerBoard);
+            Engine engine = new Engine(CheckerBoard);
 
+            Graphics.DrawBoard(CheckerBoard);
+            engine.GamePlay();
+
+            /*Graphics.DrawBoard(CheckerBoard);
             Console.WriteLine("Select piece to move: ");
-            var stringVar = Console.ReadLine();
-            var position = Input.ReadInputs(stringVar);
+            var position = Input.ReadInputs();
+
+            Console.WriteLine(CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == position[0] && x.PiecePosition.PosY == position[1]));
 
             Console.WriteLine("Select where to move piece: ");
-            var stringVar2 = Console.ReadLine();
-            var position2 = Input.ReadInputs(stringVar2);
+            var position2 = Input.ReadInputs();
 
             CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == position[0] && x.PiecePosition.PosY == position[1]).MovePiece(new Position(position2[0], position2[1]));
 
@@ -56,7 +61,7 @@ namespace Checkers
 
             CheckerBoard.Pieces.Find(x => x.PiecePosition.PosX == 5 && x.PiecePosition.PosY == 3).MovePiece(new Position(3, 1));
             Graphics.DrawBoard(CheckerBoard);
-            Console.Read();
+            Console.Read();*/
 
         }
     }

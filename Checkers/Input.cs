@@ -1,20 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Checkers
 {
     public static class Input
     {
 
-        public static int[] ReadInputs(string input)
+        public static int[] ReadInputs()
         {
-            var positionInt = new int[2];
-            string[] positionString = input.Split(',');
-            positionInt[0] = Convert.ToInt32(positionString[0]);
-            positionInt[1]= Convert.ToInt32(positionString[1]);
+            Regex regex = new Regex(@"^[1-9][A-Z]$|^[A-Z][1-9]$|^\d{2}[A-Z]$|^[A-Z]\d{2}$", RegexOptions.IgnoreCase);
+            int x, y;
 
-            return positionInt;
+            string position = Console.ReadLine();
+            while (!regex.IsMatch(position.ToUpper()))
+            {
+                Console.Write("\nInvalid input!\nPlease input your initial position: ");
+                position = Console.ReadLine();
+            }
+
+            if ((int)position.ToUpper()[0] >= 65)
+            {
+                x = (int)position.ToUpper()[0] - 65;
+                y = int.Parse(position.Substring(1)) - 1;
+                Console.WriteLine(x + "," + y);
+            }
+            else
+            {
+                x = (int)position.ToUpper()[position.Length - 1] - 65;
+                y = int.Parse(position.Substring(0, position.Length - 1)) - 1;
+                Console.WriteLine(x + "," + y);
+            }
+
+            return new int[2] { x, y };
         }
         
        
