@@ -21,18 +21,25 @@ namespace Checkers.GameEngines
         private void Move()
         {
             Console.ForegroundColor = turn;
-            Console.Write("\nPlease input your initial position: ");
+            Console.Write("\nPlease input the position of the piece to be moved: ");
             var initialPos = Input.ReadInputs();
             Piece movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
             while (movingPiece == null || movingPiece.PieceColor != turn)
             {
-                Console.Write("\nInvalid Piece!\nPlease input your initial position: ");
+                Console.Write("\nInvalid Piece!\nPlease input the position of a valid piece to be moved: ");
                 initialPos = Input.ReadInputs();
                 movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
             }
-            Console.Write("\nPlease input your final position: ");
+
+            Console.Write("\nPlease input the final position: ");
             var finalPos = Input.ReadInputs();
 
+            while(!movingPiece.MovePiece(new Position(finalPos[0], finalPos[1])))
+            {
+                Console.WriteLine("\nInvalid Move!\nPlease input a valid final position: ");
+                finalPos = Input.ReadInputs();
+            }
+            
             bool validMove = movingPiece.MovePiece(new Position(finalPos[0], finalPos[1]));
 
             if(validMove && Math.Abs(finalPos[0] - initialPos[0]) > 1 && Math.Abs(finalPos[1] - initialPos[1]) > 1)
@@ -64,7 +71,7 @@ namespace Checkers.GameEngines
             {
                 Move();
                 Console.ForegroundColor = turn;
-                Console.Write("\nAre there subsequent moves?");
+                Console.Write("\nAre there subsequent moves? (y/n): ");
                 Console.ResetColor();
                 string input = Console.ReadLine();
                 switch (input.ToLower())

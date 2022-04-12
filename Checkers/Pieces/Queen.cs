@@ -22,8 +22,6 @@ namespace Checkers.Pieces
                 PiecePosition.SetMove(newPosition.PosX, newPosition.PosY);
                 return true;
             }
-            else
-                Console.WriteLine("Invalid move!");
             return false;
         }
 

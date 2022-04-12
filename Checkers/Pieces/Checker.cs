@@ -22,11 +22,7 @@ namespace Checkers.Pieces
                 PiecePosition.SetMove(newPosition.PosX, newPosition.PosY);
                 return true;
             }
-            else
-            {
-                Console.WriteLine("Invalid move!");
-                return false;
-            }
+            return false;
         }
 
         private bool CanMoveCheckerToPosition(Position newPosition)
@@ -55,7 +51,7 @@ namespace Checkers.Pieces
         }
         private bool IsValidRegularMove(Position newPosition)
         {
-            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 && Math.Abs(PiecePosition.PosY - newPosition.PosY) != 1)
+            if (Math.Abs(PiecePosition.PosX - newPosition.PosX) != 1 || Math.Abs(PiecePosition.PosY - newPosition.PosY) != 1)
                 return false;
 
             if ((!(newPosition.PosY > PiecePosition.PosY) && PieceColor == ConsoleColor.DarkBlue) || (PieceColor == ConsoleColor.DarkRed && (newPosition.PosY > PiecePosition.PosY)))
