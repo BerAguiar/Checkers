@@ -1,4 +1,4 @@
-![Banner](https://github.com/BerAguiar/Checkers/blob/master/Checkers/Images/Checkers.png?raw=true)
+![Banner](https://github.com/BerAguiar/Checkers/blob/master/Checkers/Images/checkers.gif?raw=true)
 =====
 
 Checkers is a work in progress!
@@ -21,3 +21,8 @@ Checkers is currently being developed and maintained by (alphabetically):
 * [__BerAguiar__ ](https://github.com/BerAguiar)
 * [__Lucas-Garzarella__](https://github.com/Lucas-Garzarella)
 * [__vicmat07__](https://github.com/vicmat07)
+
+Resources
+=====
+
+* BrainKing [Checker Rules](https://brainking.com/en/GameRules?tp=115)
