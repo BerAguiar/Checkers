@@ -4,13 +4,22 @@ using System;
 
 namespace Checkers
 {
-    interface Piece
+    abstract class Piece
     {
-        Position PiecePosition { get; set; }
-        ConsoleColor PieceColor { get; set; }
-        public string PieceImage { get; }
+        public Position PiecePosition;
+        public ConsoleColor PieceColor;
+        public string PieceImage;
 
-        public int[] GetXY();
+        public Board Board;
+        public Piece(Position piecePosition, ConsoleColor pieceColor, Board board, string pieceImage)
+        {
+            PiecePosition = piecePosition;
+            PieceColor = pieceColor;
+            Board = board;
+            PieceImage = pieceImage;
+        }
+        public abstract int[] GetXY();
 
+        public abstract void MovePiece(Position position);
     }
 }
