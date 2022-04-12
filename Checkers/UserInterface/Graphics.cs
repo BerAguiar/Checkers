@@ -37,8 +37,10 @@ namespace Checkers.UserInterface
                         Console.Write(" ");
                 }
                 Console.ResetColor();
+                Console.Write((i + 1).ToString("D2"));
                 Console.WriteLine();
             }
+            Console.WriteLine("  ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, board.HorizontalLenght + 2));
         }
 
 
