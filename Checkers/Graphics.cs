@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
@@ -16,8 +15,6 @@ namespace Checkers
         public static void DrawBoard(Board board)
         {
             Console.Clear();
-            foreach(Piece piece in board.Pieces)
-                Console.WriteLine(piece.GetXY()[0] + "," + piece.GetXY()[1]);
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.WriteLine("  ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, board.HorizontalLenght + 2));
             for (int i = 0; i < board.VerticalLenght; i++)

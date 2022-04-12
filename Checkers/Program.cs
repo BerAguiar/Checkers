@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Checkers
 {
@@ -13,7 +12,6 @@ namespace Checkers
             int numberOfPieces = 10; //(size / 2 - 1) * (size / 2);
             var pieces = new List<Piece>();
             Board CheckerBoard = new Board(size, size);
-            ValidationRules vr = new ValidationRules(CheckerBoard, ConsoleColor.DarkBlue);
 
             int x = 0, y = 0;
  
