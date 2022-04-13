@@ -26,8 +26,10 @@ namespace Checkers.GameEngines
 
             Console.Write("\nPlease input the final position: ");
             var finalPos = Input.ReadInputs();
+            
+            bool validMove = movingPiece.MovePiece(new Position(finalPos[0], finalPos[1]));
 
-            while(!movingPiece.CanMoveCheckerToPosition(new Position(finalPos[0], finalPos[1])))
+            while(!validMove)
             {
                 Console.WriteLine("\nInvalid Move!");
                 initialPos = checkSelected();
@@ -35,7 +37,7 @@ namespace Checkers.GameEngines
                 finalPos = Input.ReadInputs();
             }
             
-            bool validMove = movingPiece.MovePiece(new Position(finalPos[0], finalPos[1]));
+            
 
 
             //capture logic

@@ -21,7 +21,5 @@ namespace Checkers.Pieces
         public abstract int[] GetXY();
 
         public abstract bool MovePiece(Position position);
-
-        public abstract bool CanMoveCheckerToPosition(Position position);
     }
 }
