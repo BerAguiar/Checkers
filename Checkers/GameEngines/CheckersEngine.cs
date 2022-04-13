@@ -51,6 +51,8 @@ namespace Checkers.GameEngines
             
             bool validMove = movingPiece.MovePiece(new Position(finalPos[0], finalPos[1]));
 
+
+            //capture logic
             if(validMove && Math.Abs(finalPos[0] - initialPos[0]) > 1 && Math.Abs(finalPos[1] - initialPos[1]) > 1)
             {
                 int dirX = (finalPos[0] - initialPos[0]) / Math.Abs(finalPos[0] - initialPos[0]);
@@ -67,6 +69,15 @@ namespace Checkers.GameEngines
                     jumpedPos[1] += dirY;
                 }
             }
+
+
+            //crowning logic
+            if ((movingPiece.PieceColor == ConsoleColor.DarkBlue && finalPos[1] == 9) || (movingPiece.PieceColor == ConsoleColor.DarkRed && finalPos[1] == 0))
+            {
+                board.RemovePiece(movingPiece);
+                board.AddPiece(new Queen(new Position(finalPos[0], finalPos[1]), turn, board));
+            }
+
             Console.ResetColor();
             Graphics.DrawBoard(board);
         }
@@ -129,6 +140,8 @@ namespace Checkers.GameEngines
 
         private Board GenerateCheckerBoard(int size)
         {
+            //standard board
+
             int numberOfPieces = (size / 2 - 1) * (size / 2);
             Board CheckerBoard = new Board(size, size);
 
@@ -145,6 +158,27 @@ namespace Checkers.GameEngines
                     x = 0 + y % 2;
                 }
             }
+
+            //demo boardstate
+
+            //Board CheckerBoard = new Board(size, size);
+            //CheckerBoard.AddPiece(new Checker(new Position(2, 0), ConsoleColor.DarkBlue, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(1, 1), ConsoleColor.DarkBlue, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(1, 3), ConsoleColor.DarkBlue, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(3, 1), ConsoleColor.DarkRed, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(0, 2), ConsoleColor.DarkRed, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(0, 4), ConsoleColor.DarkRed, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(3, 3), ConsoleColor.DarkRed, CheckerBoard));
+
+
+            //CheckerBoard.AddPiece(new Checker(new Position(6, 8), ConsoleColor.DarkBlue, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(9, 5), ConsoleColor.DarkBlue, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(9, 7), ConsoleColor.DarkBlue, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(7, 9), ConsoleColor.DarkRed, CheckerBoard));
+            //CheckerBoard.AddPiece(new Checker(new Position(8, 8), ConsoleColor.DarkRed, CheckerBoard));
+            
+
+            //output
             return CheckerBoard;
         }
     }
