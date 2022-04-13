@@ -9,6 +9,7 @@ namespace Checkers.GameEngines
     {
         private Board board;
         private ConsoleColor turn;
+        private Piece movingPiece = null;
 
         public CheckersEngine(int size)
         {
@@ -21,34 +22,10 @@ namespace Checkers.GameEngines
         private void Move()
         {
             Console.ForegroundColor = turn;
-            Console.Write("\nPlease input the position of the piece to be moved: ");
-            var initialPos = Input.ReadInputs();
-            Piece movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
-            while (movingPiece == null || movingPiece.PieceColor != turn)
-            {
-                Console.Write("\nInvalid Piece!\nPlease input the position of a valid piece to be moved: ");
-                initialPos = Input.ReadInputs();
-                movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
-            }
+            int[] initialPos = checkSelected();
 
-            Console.Write("\nPlease input the final position: ");
-            var finalPos = Input.ReadInputs();
+            int[] finalPos = checkPossibleMove(initialPos);
 
-            while(!movingPiece.CanMoveCheckerToPosition(new Position(finalPos[0], finalPos[1])))
-            {
-                Console.WriteLine("\nInvalid Move!\nPlease input the position of a valid piece to be moved: ");
-                initialPos = Input.ReadInputs();
-                movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
-                while (movingPiece == null || movingPiece.PieceColor != turn)
-                {
-                    Console.Write("\nInvalid Piece!\nPlease input the position of a valid piece to be moved: ");
-                    initialPos = Input.ReadInputs();
-                    movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
-                }
-                Console.Write("\nPlease input the final position: ");
-                finalPos = Input.ReadInputs();
-            }
-            
             bool validMove = movingPiece.MovePiece(new Position(finalPos[0], finalPos[1]));
 
             if(validMove && Math.Abs(finalPos[0] - initialPos[0]) > 1 && Math.Abs(finalPos[1] - initialPos[1]) > 1)
@@ -146,6 +123,36 @@ namespace Checkers.GameEngines
                 }
             }
             return CheckerBoard;
+        }
+
+
+
+        private int[] checkSelected()
+        {
+            Console.Write("\nPlease input the position of the piece to be moved: ");
+            var initialPos = Input.ReadInputs();
+            movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
+            while (movingPiece == null || movingPiece.PieceColor != turn)
+            {
+                Console.Write("\nInvalid Piece!\nPlease input the position of a valid piece to be moved: ");
+                initialPos = Input.ReadInputs();
+                movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
+            }
+            return initialPos;
+        }
+
+        private int[] checkPossibleMove(int[] initialPos)
+        {
+            Console.Write("\nPlease input the final position: ");
+            var finalPos = Input.ReadInputs();
+            while (!movingPiece.CanMoveCheckerToPosition(new Position(finalPos[0], finalPos[1])))
+            {
+                Console.WriteLine("\nInvalid Move!");
+                initialPos = checkSelected();
+                Console.Write("\nPlease input the final position: ");
+                finalPos = Input.ReadInputs();
+            }
+            return finalPos;
         }
     }
 }
