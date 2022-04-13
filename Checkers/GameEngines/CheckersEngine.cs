@@ -24,8 +24,17 @@ namespace Checkers.GameEngines
             Console.ForegroundColor = turn;
             int[] initialPos = checkSelected();
 
-            int[] finalPos = checkPossibleMove(initialPos);
+            Console.Write("\nPlease input the final position: ");
+            var finalPos = Input.ReadInputs();
 
+            while(!movingPiece.CanMoveCheckerToPosition(new Position(finalPos[0], finalPos[1])))
+            {
+                Console.WriteLine("\nInvalid Move!");
+                initialPos = checkSelected();
+                Console.Write("\nPlease input the final position: ");
+                finalPos = Input.ReadInputs();
+            }
+            
             bool validMove = movingPiece.MovePiece(new Position(finalPos[0], finalPos[1]));
 
             if(validMove && Math.Abs(finalPos[0] - initialPos[0]) > 1 && Math.Abs(finalPos[1] - initialPos[1]) > 1)
@@ -139,20 +148,6 @@ namespace Checkers.GameEngines
                 movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
             }
             return initialPos;
-        }
-
-        private int[] checkPossibleMove(int[] initialPos)
-        {
-            Console.Write("\nPlease input the final position: ");
-            var finalPos = Input.ReadInputs();
-            while (!movingPiece.CanMoveCheckerToPosition(new Position(finalPos[0], finalPos[1])))
-            {
-                Console.WriteLine("\nInvalid Move!");
-                initialPos = checkSelected();
-                Console.Write("\nPlease input the final position: ");
-                finalPos = Input.ReadInputs();
-            }
-            return finalPos;
         }
     }
 }
