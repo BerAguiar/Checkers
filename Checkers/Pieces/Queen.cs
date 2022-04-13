@@ -25,7 +25,7 @@ namespace Checkers.Pieces
             return false;
         }
 
-        public bool CanMoveCheckerToPosition(Position newPosition)
+        public override bool CanMoveCheckerToPosition(Position newPosition)
         {
             if (!IsValidPosition(newPosition))
                 return false;

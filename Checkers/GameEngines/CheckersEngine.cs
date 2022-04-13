@@ -34,7 +34,7 @@ namespace Checkers.GameEngines
             Console.Write("\nPlease input the final position: ");
             var finalPos = Input.ReadInputs();
 
-            while(!movingPiece.MovePiece(new Position(finalPos[0], finalPos[1])))
+            while(!movingPiece.CanMoveCheckerToPosition(new Position(finalPos[0], finalPos[1])))
             {
                 Console.WriteLine("\nInvalid Move!\nPlease input a valid final position: ");
                 finalPos = Input.ReadInputs();
