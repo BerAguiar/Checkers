@@ -36,7 +36,16 @@ namespace Checkers.GameEngines
 
             while(!movingPiece.CanMoveCheckerToPosition(new Position(finalPos[0], finalPos[1])))
             {
-                Console.WriteLine("\nInvalid Move!\nPlease input a valid final position: ");
+                Console.WriteLine("\nInvalid Move!\nPlease input the position of a valid piece to be moved: ");
+                initialPos = Input.ReadInputs();
+                movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
+                while (movingPiece == null || movingPiece.PieceColor != turn)
+                {
+                    Console.Write("\nInvalid Piece!\nPlease input the position of a valid piece to be moved: ");
+                    initialPos = Input.ReadInputs();
+                    movingPiece = board.Pieces.Find(x => x.PiecePosition.PosX == initialPos[0] && x.PiecePosition.PosY == initialPos[1]);
+                }
+                Console.Write("\nPlease input the final position: ");
                 finalPos = Input.ReadInputs();
             }
             
