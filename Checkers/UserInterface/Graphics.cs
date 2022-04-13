@@ -17,9 +17,11 @@ namespace Checkers.UserInterface
         {
             Console.Clear();
             Console.OutputEncoding = System.Text.Encoding.Unicode;
+            //letter coordinates
             Console.WriteLine("  ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, board.HorizontalLenght + 2));
             for (int i = 0; i < board.VerticalLenght; i++)
             {
+                //number coordinates
                 Console.Write((i+1).ToString("D2"));
                 for (int j = 0; j < board.HorizontalLenght; j++)
                 {
@@ -37,9 +39,12 @@ namespace Checkers.UserInterface
                         Console.Write(" ");
                 }
                 Console.ResetColor();
+                //added to ease writing the moves close to the right
                 Console.Write((i + 1).ToString("D2"));
                 Console.WriteLine();
             }
+
+            //added to ease writing the moves close to the bottom
             Console.WriteLine("  ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(0, board.HorizontalLenght + 2));
         }
 
